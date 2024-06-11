@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Bored Token",
-  description: "A bored project",
+  title: "$BORED",
+  description: "Bored token on solana",
 };
 
 export default function RootLayout({
