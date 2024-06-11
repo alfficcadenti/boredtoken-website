@@ -36,6 +36,10 @@ export default function Home() {
         />
       </div>
 
+      <div className="font-bold">
+        CA: 5E4cppid8BSqgdsa4aKHu45rCUspuVqEty4Wa95ipump
+      </div>
+
     </main>
   );
 }
