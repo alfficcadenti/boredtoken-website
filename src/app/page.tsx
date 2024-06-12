@@ -1,41 +1,79 @@
-import Image from "next/image";
+"use client"; // Add this line at the top
+
+import React, { useState, useEffect } from 'react';
+import ThreeScene from './components/ThreeScene';
+
+const FONT_SIZE_INITIAL = 48; // Initial font size in vw
+const FONT_SIZE_FINAL = 96; // Final font size in vw
+const SCROLL_THRESHOLD = 0.1; // Percentage of page scroll at which font size changes
 
 export default function Home() {
+  const [fontSize, setFontSize] = useState(FONT_SIZE_INITIAL);
+  const [tokenData, setTokenData] = useState<any>(null); // Use 'any' type for tokenData
+
+  useEffect(() => {
+
+    fetch('https://api.dexscreener.com/latest/dex/tokens/5E4cppid8BSqgdsa4aKHu45rCUspuVqEty4Wa95ipump')
+      .then(response => response.json())
+      .then(data => {
+        // Extract token data from the API response
+        const tokenInfo = data.pairs[0];
+        setTokenData(tokenInfo);
+      })
+      .catch(error => console.error('Error fetching data:', error));
+
+
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      const scrollPercentage = scrollPosition / maxScroll;
+
+      // Calculate the new font size based on the scroll percentage
+      const newFontSize = FONT_SIZE_INITIAL - (scrollPercentage * (FONT_SIZE_INITIAL - FONT_SIZE_FINAL));
+
+      // Update the font size
+      setFontSize(newFontSize);
+    };
+
+    // Add event listener for scroll
+    window.addEventListener('scroll', handleScroll);
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
 
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center  lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0 font-bold text-2xl"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            $BORED
-          </a>
+      <ThreeScene />
+      <section className="min-h-screen">
+        <div className="fw " style={{ fontSize: `${fontSize}vw` }}>BORED</div>
+      </section>
+      <section className="pt-24 w-full flex justify-start items-center z-20">
+        <div className='h-full text-[16vw] leading-none	'>
+          STAY <br />BORED <br />
         </div>
-        <div className="flex flex-row gap-2 justify-center">
-        <a href="https://t.me/mnatsboredcoin" target="blank" className="font-bold font-2xl py-2 px-4 border border-black border-2 rounded">
-          TG
-        </a>
-        <a href="https://pump.fun/5E4cppid8BSqgdsa4aKHu45rCUspuVqEty4Wa95ipump" target="blank" className="font-bold font-2xl py-2 px-4 border border-black border-2 rounded">
-          BUY
-        </a>
+      </section>
+      <section className="pb-24 w-full flex justify-end items-center">
+        <div className='h-full text-[8vw] leading-none	'>
+          {tokenData && (
+            <>
+              <div>{tokenData.priceUsd}<span className='text-purple'>$</span></div>
+              <div className='flex flex-col text-[4vw] text-center'>
+                <div className='text-[3vw] text-yellow'>24h stats</div>
+                <div>{tokenData.txns.h24.buys} <span className='text-purple'>buys</span> </div>
+                <div>{tokenData.txns.h24.sells} <span className='text-purple'>sells</span></div>
+                <div>{tokenData.volume.h24} $ <span className='text-purple'>volume</span></div>
+                <div>{tokenData.priceChange.h24}% <span className='text-purple'>change</span></div>
+              </div>
+            </>
+          )}
         </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full  before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3  after:content-[''] after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/bored.png"
-          alt="Next.js Logo"
-          width={600}
-          height={600}
-          priority
-        />
-      </div>
-
+      </section>
+      <section className="py-24 w-full flex justify-start items-end">
+        <a target='blank' href="https://pump.fun/5E4cppid8BSqgdsa4aKHu45rCUspuVqEty4Wa95ipump" className='z-20 bg-[#ef362c] hover:text-black w-full text-center rounded-full p-8 font-bold text-3xl'>BUY NOW</a>
+      </section>
     </main>
   );
 }
