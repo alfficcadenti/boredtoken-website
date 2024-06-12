@@ -103,7 +103,7 @@ const ThreeScene = () => {
             const center = boundingBox.getCenter(new THREE.Vector3());
             const height = boundingBox.getSize(new THREE.Vector3()).y;
 
-            camera.lookAt(new THREE.Vector3(center.x, center.y + height / 2, center.z));
+            camera.lookAt(new THREE.Vector3(center.x, center.y + height / 2.5, center.z));
             cube.position.y = lerp(-10, 0, scalePercent(-20, 60))
             cube.scale.set(40,40,40);
           }
@@ -118,9 +118,9 @@ const ThreeScene = () => {
             const center = boundingBox.getCenter(new THREE.Vector3());
             const height = boundingBox.getSize(new THREE.Vector3()).y;
 
-            camera.lookAt(new THREE.Vector3(center.x, center.y + height / 2, center.z));
+            camera.lookAt(new THREE.Vector3(center.x, center.y + height / 2.5, center.z));
             // camera.position.set(0, 1, 2);
-            cube.rotation.y = lerp(0, Math.PI * 2, scalePercent(40, 60));
+            cube.rotation.y = lerp(0, Math.PI, scalePercent(40, 60));
             cube.scale.set(30,30,30);
           }
         },

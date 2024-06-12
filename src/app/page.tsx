@@ -44,13 +44,13 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-24 max-w-full overflow-x-hidden">
 
       <ThreeScene />
-      <section className="min-h-screen">
+      <section className=" ">
         <div className="fw " style={{ fontSize: `${fontSize}vw` }}>BORED</div>
       </section>
-      <section className="pt-24 w-full flex justify-start items-center z-20">
+      <section className="-pt-24 w-full flex justify-start items-center z-20">
         <div className='h-full text-[16vw] leading-none	'>
           STAY <br />BORED <br />
         </div>
