@@ -3,11 +3,28 @@
 @tailwind utilities;
 
 body {
-  background: #EF972C;
+  background: #ef972c;
+  color: #e5ef2c; 
+  /* background: #ef972c; */
+  /* color: #972cef;  */
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+.fw {
+  text-align: justify;
+  font-size: 58vw;
+  font-weight: 700;
+  line-height: 0.7;
+  color: #ef362c; 
+
+}
+
+.fw:after {
+  content: "";
+  display: inline-block;
+  width: 100%;
 }
