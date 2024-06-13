@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 // import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 import { GLTF, GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/examples/jsm/Addons.js';
 
 const ThreeScene = () => {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -12,7 +13,7 @@ const ThreeScene = () => {
   useEffect(() => {
     let scrollPercent = 0;
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+    const camera = new THREE.PerspectiveCamera(20, window.innerWidth / window.innerHeight, 0.1, 10000);
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 
@@ -28,11 +29,16 @@ const ThreeScene = () => {
 
     const loader = new GLTFLoader();
 
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('/draco/'); 
+    loader.setDRACOLoader(dracoLoader);
+
+
     // const loader = new FBXLoader(); // Use FBXLoader instead of GLTFLoader
     let cube: THREE.Group<THREE.Object3DEventMap>;
     let mixer: THREE.AnimationMixer;
     loader.load(
-      '/bored4.glb',
+      '/bored.glb',
       function (gltf) {
 
         cube = gltf.scene;
@@ -46,11 +52,11 @@ const ThreeScene = () => {
           action.play();
         });
 
-       
+
 
         cube.position.set(0, 0, 0);
-        cube.scale.set(20, 20, 20);
-        
+        // cube.scale.set(4, 4, 4);
+
         scene.add(cube);
 
         const boundingBox = new THREE.Box3().setFromObject(gltf.scene);
@@ -61,7 +67,8 @@ const ThreeScene = () => {
 
 
         // Set the camera to be above the model
-        camera.position.set(center.x, center.y + height, center.z + height);
+        // camera.position.set(center.x, center.y + height*20, center.z + height);
+        camera.position.set(0, 50, 90);
         camera.lookAt(new THREE.Vector3(center.x, center.y + height, center.z));
 
 
@@ -83,7 +90,7 @@ const ThreeScene = () => {
       render();
     }
 
-  
+
 
     function lerp(x: number, y: number, a: number) {
       return (1 - a) * x + a * y;
@@ -121,7 +128,7 @@ const ThreeScene = () => {
             camera.lookAt(new THREE.Vector3(center.x, center.y + height / 2.5, center.z));
             // camera.position.set(0, 1, 2);
             cube.rotation.y = lerp(0, Math.PI, scalePercent(40, 60));
-            cube.scale.set(30,30,30);
+            // cube.scale.set(30,30,30);
           }
         },
       },
