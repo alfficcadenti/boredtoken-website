@@ -25,8 +25,10 @@ export default function RootLayout({
         <header className="sticky top-0 z-50 flex flex-row justify gap-4 text-xl p-12 ">
           <div className="text-black">$BORED</div>
           <div className="grow"></div>
+         
+          <a className="text-black" target="blank" href="https://x.com/bored_coin_">TWITTER</a>
           <a className="text-black" target="blank" href="https://t.me/mnatsboredcoin">TELEGRAM</a>
-          <a className="text-black" target="blank" href="https://pump.fun/5E4cppid8BSqgdsa4aKHu45rCUspuVqEty4Wa95ipump">5E4c..pump</a>
+          <a className="text-black" target="blank" href="https://pump.fun/5E4cppid8BSqgdsa4aKHu45rCUspuVqEty4Wa95ipump">5E..pump</a>
         </header>
 
         {children}

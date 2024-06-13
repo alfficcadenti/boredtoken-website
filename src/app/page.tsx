@@ -71,8 +71,9 @@ export default function Home() {
           )}
         </div>
       </section>
-      <section className="py-24 w-full flex justify-start items-end">
-        <a target='blank' href="https://pump.fun/5E4cppid8BSqgdsa4aKHu45rCUspuVqEty4Wa95ipump" className='z-20 bg-[#ef362c] hover:text-black w-full text-center rounded-full p-8 font-bold text-3xl'>BUY NOW</a>
+      <section className="py-24 w-full flex flex-col justify-start items-center gap-4">
+        <a target='blank' href="https://pump.fun/5E4cppid8BSqgdsa4aKHu45rCUspuVqEty4Wa95ipump" className='z-20 bg-red hover:text-black w-full text-center rounded-full p-8 font-bold text-3xl'>BUY NOW</a>
+        <a className='z-20 bg-yellow text-black w-full text-center px-6 py-2 rounded-full w-auto font-bold text-lg'>claim for top NFT holders coming soon</a>
       </section>
     </main>
   );

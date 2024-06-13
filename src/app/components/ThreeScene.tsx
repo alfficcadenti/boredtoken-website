@@ -43,7 +43,6 @@ const ThreeScene = () => {
 
         cube = gltf.scene;
         let anim = gltf.animations[0];
-        console.log(cube)
 
         mixer = new THREE.AnimationMixer(gltf.scene);
         console.log(gltf.animations)
@@ -55,9 +54,8 @@ const ThreeScene = () => {
 
 
         cube.position.set(0, 0, 0);
-        // cube.scale.set(4, 4, 4);
+        // cube.scale.set(40,40,40);
 
-        scene.add(cube);
 
         const boundingBox = new THREE.Box3().setFromObject(gltf.scene);
         const center = boundingBox.getCenter(new THREE.Vector3());
@@ -71,6 +69,7 @@ const ThreeScene = () => {
         camera.position.set(0, 50, 90);
         camera.lookAt(new THREE.Vector3(center.x, center.y + height, center.z));
 
+        scene.add(cube);
 
 
       },
@@ -127,11 +126,12 @@ const ThreeScene = () => {
 
             camera.lookAt(new THREE.Vector3(center.x, center.y + height / 2.5, center.z));
             // camera.position.set(0, 1, 2);
-            cube.rotation.y = lerp(0, Math.PI, scalePercent(40, 60));
+            cube.rotation.y = lerp(0, -Math.PI/6, scalePercent(40, 60));
             // cube.scale.set(30,30,30);
           }
         },
       },
+
       // {
       //   start: 70,
       //   end: 80,
@@ -153,7 +153,7 @@ const ThreeScene = () => {
         end: 101,
         func: () => {
           if (cube) {
-            cube.rotation.y += 0.01;
+            cube.rotation.y += 0.003;
           }
         },
       },
