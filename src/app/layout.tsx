@@ -28,7 +28,7 @@ export default function RootLayout({
          
           <a className="text-black" target="blank" href="https://x.com/bored_coin_">TWITTER</a>
           <a className="text-black" target="blank" href="https://t.me/mnatsboredcoin">TELEGRAM</a>
-          <a className="text-black" target="blank" href="https://pump.fun/5E4cppid8BSqgdsa4aKHu45rCUspuVqEty4Wa95ipump">5E..pump</a>
+          <a className="text-black" target="blank" href="https://raydium.io/swap/?inputMint=5E4cppid8BSqgdsa4aKHu45rCUspuVqEty4Wa95ipump&outputMint=sol">5E..pump</a>
         </header>
 
         {children}
