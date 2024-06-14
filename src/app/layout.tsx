@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Rubik_Mono_One, Ubuntu_Mono, Bebas_Neue } from "next/font/google";
 import "./globals.css";
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ["latin"] });
 const rubik = Bebas_Neue({
@@ -23,14 +24,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={rubik.className}>
         <header className="sticky top-0 z-50 flex flex-row justify gap-4 text-xl p-12 ">
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-5PZC7KGV21"></script>
-        <script>
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-5PZC7KGV21"/>
+        <Script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', 'G-5PZC7KGV21');
-        </script>
+        </Script>
 
           <div className="text-black">$BORED</div>
           <div className="grow"></div>
